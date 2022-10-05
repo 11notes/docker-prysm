@@ -1,10 +1,10 @@
-#!/bin/ash
+#!/bin/bash
 if [ -z "$1" ]; then
     set -- "prysm" \
         --accept-terms-of-use \
         --datadir "/eth/prysm/var" \
         --restore-target-dir "/eth/prysm/var" \
-        --execution-endpoint http://${GETH}:8551 \
+        --execution-endpoint http://localhost:8551 \
         --jwt-secret /prysm/etc/jwtsecret \
         --block-batch-limit 256 \
         --p2p-max-peers 512 \
