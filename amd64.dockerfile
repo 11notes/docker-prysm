@@ -1,31 +1,3 @@
-# :: Build
-	FROM golang:alpine as prysm
-	ENV checkout=v1.1.14
-
-    RUN set -ex; \
-        apk add --update --no-cache \
-            curl \
-            wget \
-            unzip \
-			build-base \
-            linux-headers \
-            make \
-            cmake \
-            g++ \
-            git; \
-        git clone https://github.com/bnb-chain/bsc.git; \
-        cd /go/bsc; \
-		git checkout ${checkout}; \
-        make -j $(nproc);
-
-    RUN set -ex; \
-        mkdir -p /go/bsc/mainnet; cd /go/bsc/mainnet; \
-        wget https://github.com/bnb-chain/bsc/releases/download/${checkout}/mainnet.zip; \
-        unzip mainnet.zip; \
-        rm mainnet.zip;
-        
-        
-
 # :: Header
 	FROM ubuntu:22.04
     ENV checkout=v3.1.1
