@@ -11,7 +11,7 @@
             mkdir -p /prysm/etc; \
             mkdir -p /prysm/var;
 
-        ADD https://github.com/prysmaticlabs/prysm/releases/download/${checkout}/beacon-chain-${checkout}-modern-linux-amd64 /usr/local/bin/prysm
+        ADD https://github.com/prysmaticlabs/prysm/releases/download/${checkout}/beacon-chain-${checkout}-linux-amd64 /usr/local/bin/prysm
 
 		RUN set -ex; \
             apt-get update -y; \
