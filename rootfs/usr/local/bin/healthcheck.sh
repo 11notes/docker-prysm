@@ -1,2 +1,8 @@
 #!/bin/bash
-curl --max-time 5 -s http://localhost:3500/eth/v1/node/syncing || exit 1
+CURL_RESULT=$(curl -s http://localhost:8080/healthz) || exit 12
+while read STATUS; do
+if ! echo "${STATUS}" | grep -q ': OK$'; then
+    exit 13
+fi
+done < <(echo "${CURL_RESULT}")
+exit 0

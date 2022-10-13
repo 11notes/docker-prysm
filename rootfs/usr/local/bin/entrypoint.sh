@@ -1,18 +1,21 @@
 #!/bin/bash
-if [ -z "$1" ]; then
+
+WAN_IP=$(curl -s ifconfig.me)
+
+if [ -z "${1}" ]; then
     set -- "prysm" \
         --accept-terms-of-use \
         --datadir "/prysm/var" \
         --restore-target-dir "/prysm/var" \
         --execution-endpoint http://localhost:8551 \
         --jwt-secret /prysm/etc/jwtsecret \
-        --block-batch-limit 256 \
-        --slots-per-archive-point 8192 \
-        --max-goroutines 65536 \
         --p2p-local-ip 0.0.0.0 \
-        --p2p-max-peers 512 \
+        --monitoring-host 0.0.0.0 \
+        --p2p-host-ip ${WAN_IP} \
         --grpc-gateway-host 0.0.0.0 \
-        --grpc-gateway-corsdomain '*'
+        --grpc-gateway-corsdomain '*' \
+        --checkpoint-sync-url=https://mainnet.checkpoint.sigp.io \
+        --genesis-beacon-api-url=https://mainnet.checkpoint.sigp.io
 fi
 
 exec "$@"

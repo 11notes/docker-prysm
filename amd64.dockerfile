@@ -38,7 +38,7 @@
 				/prysm
 
 # :: Volumes
-	VOLUME ["/prysm/etc", "/prysm/var"]
+	VOLUME ["/prysm/var"]
 
 # :: Monitor
     RUN set -ex; chmod +x /usr/local/bin/healthcheck.sh
