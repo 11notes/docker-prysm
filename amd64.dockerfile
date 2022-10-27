@@ -1,6 +1,6 @@
 # :: Header
 	FROM ubuntu:22.04
-    ENV checkout=v3.1.1
+    ENV checkout=v3.1.2
 
 # :: Run
 	USER root
