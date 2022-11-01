@@ -34,9 +34,8 @@ docker run --name prysm \
             --p2p-host-ip 13.224.103.127 \
             --grpc-gateway-host 0.0.0.0 \
             --grpc-gateway-corsdomain '*' \
-            --checkpoint-sync-url=https://mainnet.checkpoint.sigp.io \
-            --genesis-beacon-api-url=https://mainnet.checkpoint.sigp.io \
-            --suggested-fee-recipient=0xDEAD*************************
+            --checkpoint-sync-url=https://checkpoint.eth.web3.eleven.cloud \
+            --genesis-beacon-api-url=https://checkpoint.eth.web3.eleven.cloud
 ```
 
 ## Docker -u 1000:1000 (no root initiative)
