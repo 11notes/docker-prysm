@@ -2,6 +2,7 @@
 "Go implementation of Ethereum proof of stake"
 
 This container provides an easy and simple way to use prysm without the hassle of library dependencies and compiling the source yourself.
+It will also determine your CPU set and run the correct prysm client support your CPU the best.
 
 ## Volumes
 * /prysm/var - Purpose: Stores beacon chain data
