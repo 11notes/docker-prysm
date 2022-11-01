@@ -1,6 +1,7 @@
 # :: Header
 	FROM ubuntu:22.04
     ENV checkout=v3.1.2
+    ENV FORCE_COLOR 1
 
 # :: Run
 	USER root
@@ -11,7 +12,8 @@
             mkdir -p /prysm/etc; \
             mkdir -p /prysm/var;
 
-        ADD https://github.com/prysmaticlabs/prysm/releases/download/${checkout}/beacon-chain-${checkout}-linux-amd64 /usr/local/bin/prysm
+        ADD https://github.com/prysmaticlabs/prysm/releases/download/${checkout}/beacon-chain-${checkout}-linux-amd64 /usr/local/bin/prysm-no-adx
+        ADD https://github.com/prysmaticlabs/prysm/releases/download/${checkout}/beacon-chain-${checkout}-modern-linux-amd64 /usr/local/bin/prysm-adx
 
 		RUN set -ex; \
             apt-get update -y; \
@@ -19,11 +21,10 @@
             apt-get install -y --no-install-recommends \
                 libssl-dev \
                 curl \
-                ca-certificates \
-                tar; \
+                ca-certificates; \
             apt-get clean; \
             rm -rf /var/lib/apt/lists/*; \
-            chmod +x /usr/local/bin/prysm;
+            chmod +x -R /usr/local/bin;
 
 		RUN set -ex; \
             addgroup --gid 1000 prysm; \
@@ -35,7 +36,8 @@
     # :: docker -u 1000:1000 (no root initiative)
         RUN set -ex; \
             chown -R prysm:prysm \
-				/prysm
+				/prysm \
+                /usr/local/bin
 
 # :: Volumes
 	VOLUME ["/prysm/var"]
