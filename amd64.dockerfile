@@ -32,6 +32,8 @@
 
   # :: copy root filesystem changes
     COPY ./rootfs /
+    RUN set -ex; \
+      chmod +x -R /usr/local/bin
 
   # :: docker -u 1000:1000 (no root initiative)
     RUN set -ex; \
